@@ -1,6 +1,6 @@
 'use server'
 
-import User from '@/database/user-model'
+import User from '@/datebase/user-model'
 import { connectToDatabase } from '@/lib/mongoose'
 import { ICreateUser, IUpdateUser } from './types'
 
