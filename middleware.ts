@@ -3,27 +3,44 @@ import createMiddleware from 'next-intl/middleware'
 
 const intlMiddleware = createMiddleware({
 	locales: ['uz', 'ru'],
-	defaultLocale: 'en',
+	defaultLocale: 'uz',
 })
 
-const isProtectedRoute = createRouteMatcher([
-	'/:lng/instructor/create-course(.*)',
-	'/:lng/instructor/my-course(.*)',
-	'/:lng/instructor/dashboard(.*)',
+// Public routelarni matcher
+const isPublicRoute = createRouteMatcher([
+	'/:lng',
+	'/:lng/courses',
+	'/:lng/courses/:slug',
+	'/:lng/blogs',
+	'/:lng/blogs/:slug',
+	'/:lng/instructor/create-course',
+	'/:lng/instructor/my-course',
+	'/:lng/instructor/my-course/:courseid',
+	'/:lng/instructor/dashboard',
+	'/:lng/instructor/reviews',
+	'/:lng/instructor/settings',
+	'/:lng/instructor',
+	'/:lng/api/uploadthing',
+	'/:lng/api/webhook', // ✅ barcha tillar uchun
 ])
 
 export default clerkMiddleware(async (auth, req) => {
-	// Agar bu yo‘l himoyalangan bo‘lsa, autentifikatsiyani talab qiling
-	if (isProtectedRoute(req)) {
-		await auth.protect()
+	// Public routelar → faqat intl ishlaydi
+	if (isPublicRoute(req)) {
+		return intlMiddleware(req)
 	}
-	// Boshqa holatlarda next-intl middleware’ini ishlatamiz
+
+	// Private routelar → login bo‘lmasa redirect
+	const { userId, redirectToSignIn } = await auth()
+
+	if (!userId) {
+		return redirectToSignIn({ returnBackUrl: req.url })
+	}
+
+	// Auth muvaffaqiyatli → intl ishlaydi
 	return intlMiddleware(req)
 })
 
 export const config = {
-	matcher: [
-		'/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-		'/(api|trpc)(.*)',
-	],
+	matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 }
