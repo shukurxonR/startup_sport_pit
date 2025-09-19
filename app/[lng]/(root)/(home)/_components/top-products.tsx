@@ -1,11 +1,14 @@
 'use client'
+import { IProduct } from '@/app.types'
 import ProductCard from '@/components/cards/product-card'
-import { products } from '@/components/constants'
 import useLng from '@/hooks/use-lng'
 
-const TopProducts = () => {
+interface Props {
+	topProducts: IProduct[]
+}
+const TopProducts = ({ topProducts }: Props) => {
 	const t = useLng()
-	const filterTopProducts = products.filter(product => product.top === true)
+
 	return (
 		<div className='max-w-6xl mx-auto mt-16'>
 			<div className='flex items-center justify-between'>
@@ -20,8 +23,8 @@ const TopProducts = () => {
 			</div>
 
 			<div className='grid grid-cols-4 gap-4 mt-8'>
-				{filterTopProducts.map(product => (
-					<ProductCard key={product.id} {...product} />
+				{topProducts.map(product => (
+					<ProductCard key={product._id} {...product} />
 				))}
 			</div>
 		</div>

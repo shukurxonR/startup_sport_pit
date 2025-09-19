@@ -24,7 +24,7 @@ export const createUser = async (data: ICreateUser) => {
 
 		return newUser
 	} catch (error) {
-		throw new Error(`Error creating user. Please try again. ${error}`)
+		throw new Error(`Error creating user. Please try again.${error}`)
 	}
 }
 
@@ -37,6 +37,6 @@ export const updateUser = async (data: IUpdateUser) => {
 		})
 		return updateduser
 	} catch (error) {
-		throw new Error(`Error updating user. Please try again. ${error}`)
+		throw new Error(`Error updating user. Please try again.${error}`)
 	}
 }

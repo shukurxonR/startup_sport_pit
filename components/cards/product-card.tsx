@@ -1,23 +1,28 @@
+'use client'
+import { IProduct } from '@/app.types'
 import { cn, formatPrice } from '@/lib/utils'
-import { ICard } from '@/types/types'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
 import Image from 'next/image'
-import { useParams } from 'next/navigation'
+import Link from 'next/link'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
 import { Card, CardContent } from '../ui/card'
-function ProductCard(product: ICard) {
-	const { lng } = useParams()
 
+function ProductCard(product: IProduct) {
 	return (
-		<div>
+		<Link href={`/product/${product._id}`}>
 			<Card
-				key={product.id}
-				className='overflow-hidden transition-all duration-300 hover:shadow-lg'
+				key={product._id}
+				className='overflow-hidden transition-all  duration-300 hover:shadow-lg cursor-pointer'
 			>
 				<div className='relative h-60 w-full'>
-					<Image src={product.image} alt={product.name} fill className='p-8' />
+					<Image
+						src={product.images?.[0]}
+						alt={product.name}
+						fill
+						className='p-8'
+					/>
 					<div className='absolute top-2 left-2 flex flex-col gap-1'>
 						{product.top ? (
 							<Badge className='text-sm  h-5 w-12 cursor-pointer bg-blue-500 hover:bg-blue-400 '>
@@ -54,17 +59,17 @@ function ProductCard(product: ICard) {
 				</div>
 
 				<CardContent className='p-4'>
-					<h3 className='font-semibold text-lg mb-2 line-clamp-2 '>
+					<h3 className='font-semibold text-[17px] mb-2 line-clamp-2 min-h-[48px]'>
 						{product.name}
 					</h3>
 
-					<div className='flex items-center justify-between  mb-2'>
+					<div className='flex items-c3enter justify-between  mb-2'>
 						{product.discount ? (
-							<span className=' text-sm line-through'>
-								{formatPrice(product.price * 1.1, lng as string)} so`m
+							<span className='text-sm line-through text-red-600'>
+								{formatPrice(product.price)} so`m
 							</span>
 						) : null}
-						<span className='text-green-600 text-sm'>{product.status}</span>
+						<span className='text-green-600 text-sm'>Active</span>
 					</div>
 
 					<div className='flex items-center justify-between mt-4'>
@@ -76,7 +81,10 @@ function ProductCard(product: ICard) {
 									: null
 							)}
 						>
-							{formatPrice(product.price, lng as string)} so`m
+							{formatPrice(
+								product.price - (product.price * product.percent) / 100
+							)}{' '}
+							so`m
 						</span>
 						<motion.div
 							whileHover={{ scale: 1.04, zIndex: 10, y: -4 }}
@@ -90,7 +98,7 @@ function ProductCard(product: ICard) {
 					</div>
 				</CardContent>
 			</Card>
-		</div>
+		</Link>
 	)
 }
 

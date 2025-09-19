@@ -12,3 +12,15 @@ export interface IUpdateUser {
 		picture: string
 	}
 }
+
+export interface ICreateCourse {
+	name: string
+	category: string
+	description: string
+	brand: string
+	price: number
+	top?: boolean
+	discount?: boolean
+	percent?: number
+	images: string[]
+}

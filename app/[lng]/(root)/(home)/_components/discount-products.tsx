@@ -1,11 +1,11 @@
 'use client'
+import { IProduct } from '@/app.types'
 import ProductCard from '@/components/cards/product-card'
-import { products } from '@/components/constants'
-// Mahsulotlar ma'lumotlari
 
-const DiscountProducts = () => {
-	const filterProducts = products.filter(product => product.discount === true)
-
+interface Props {
+	discountProducts: IProduct[]
+}
+const DiscountProducts = ({ discountProducts }: Props) => {
 	return (
 		<div className='max-w-6xl mx-auto mt-10'>
 			<div className='flex items-center gap-3 group'>
@@ -25,8 +25,8 @@ const DiscountProducts = () => {
 			</div>
 
 			<div className='grid grid-cols-4 gap-4 mt-8'>
-				{filterProducts.map(product => (
-					<ProductCard key={product.id} {...product} />
+				{discountProducts.map(product => (
+					<ProductCard key={product._id} {...product} />
 				))}
 			</div>
 		</div>

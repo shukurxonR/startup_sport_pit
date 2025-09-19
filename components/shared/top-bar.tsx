@@ -34,17 +34,6 @@ function TopBar({ label, extra, description }: Props) {
 					</div>
 				</div>
 			</div>
-
-			{description && (
-				<div className='container mx-auto my-12 max-w-6xl px-4'>
-					<h1 className='font-space-grotesk text-3xl md:text-4xl font-bold'>
-						{t(label)}
-					</h1>
-					<p className='mt-2 max-w-md text-muted-foreground'>
-						{t(description)}
-					</p>
-				</div>
-			)}
 		</div>
 	)
 }

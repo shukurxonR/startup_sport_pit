@@ -24,8 +24,10 @@ import { Textarea } from '@/components/ui/textarea'
 import { createProductSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { createProduct } from '@/actions/product-action'
 import { clearImages } from '@/redux/reducers/imagesState'
 import { RootState } from '@/redux/store'
+import { useAuth } from '@clerk/nextjs'
 import { ImagePlus, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -39,6 +41,7 @@ function CreateForm() {
 	const [isDiscount, setIsDiscount] = useState<boolean>(false)
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const dispatch = useDispatch()
+	const { userId } = useAuth()
 	const images = useSelector((state: RootState) => state.images.images)
 	const form = useForm<z.infer<typeof createProductSchema>>({
 		resolver: zodResolver(createProductSchema),
@@ -50,7 +53,18 @@ function CreateForm() {
 			return toast.error('Sorry, you did not upload a picture.')
 		}
 
-		console.log({ ...values, images })
+		const result = createProduct(userId!, {
+			...values,
+			price: +values.price,
+			percent: +values.percent!,
+			images,
+		})
+		console.log(result)
+		toast.promise(result, {
+			loading: 'Loading...',
+			success: 'Successfully loaded',
+			error: 'Unfortunately, the product could not be loaded.',
+		})
 	}
 
 	return (
