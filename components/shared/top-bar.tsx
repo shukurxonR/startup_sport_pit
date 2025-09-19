@@ -7,10 +7,9 @@ import Link from 'next/link'
 interface Props {
 	label: string
 	extra?: string
-	description?: string
 }
 
-function TopBar({ label, extra, description }: Props) {
+function TopBar({ label, extra }: Props) {
 	const t = useTranslate()
 	return (
 		<div>
