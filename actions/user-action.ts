@@ -20,7 +20,7 @@ export const createUser = async (data: ICreateUser) => {
 			return updatedUser
 		}
 
-		const newUser = User.create(data)
+		const newUser = await User.create(data)
 
 		return newUser
 	} catch (error) {
