@@ -7,11 +7,11 @@ import { RootState } from '@/redux/store'
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'sonner'
 
 export default function ImageUploader() {
 	const dispatch = useDispatch()
 	const images = useSelector((state: RootState) => state.images.images)
-	console.log(images)
 
 	return (
 		<div className='flex flex-col gap-2 '>
@@ -37,7 +37,7 @@ export default function ImageUploader() {
 								if (res && res[0] && res[0].ufsUrl) {
 									dispatch(addImage(res[0].ufsUrl))
 								} else {
-									// toast.error('Image upload failed')
+									toast.error('Image upload failed')
 								}
 							}}
 							onUploadError={error => {

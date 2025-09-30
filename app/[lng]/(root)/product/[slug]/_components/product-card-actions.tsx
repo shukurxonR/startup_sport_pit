@@ -3,13 +3,36 @@ import { IProduct } from '@/app.types'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import useFavorite from '@/hooks/use-favorite'
 import { formatPrice } from '@/lib/utils'
+import { addToCard, removeCard } from '@/redux/reducers/basketState'
+import { RootState } from '@/redux/store'
+import { useAuth } from '@clerk/nextjs'
 import { Check, Heart, ShoppingBasket, ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'sonner'
 
 function ProductCardActions(product: IProduct) {
+	const { userId } = useAuth()
+	const { toggleFavorite, isFavorite } = useFavorite(userId!)
+	const dispatch = useDispatch()
+
+	const handleAddToCart = () => {
+		dispatch(addToCard(product))
+		toast.success(`Savatga ${product.name}, qoshildi ✅`)
+	}
+	const handleRemoveToCart = () => {
+		dispatch(removeCard(product._id))
+		toast.success(`Mahsulot savatdan olindi! ✅`)
+	}
+
+	const basketProducts = useSelector(
+		(state: RootState) => state.basket.basketProducts
+	)
+	const isBasket = basketProducts.find(card => card._id === product._id)
 	return (
-		<div className='my-14 flex flex-col gap-4'>
+		<div className='my-14 flex flex-col gap-4 sticky top-24'>
 			<Card>
 				<CardContent className='p-4 flex flex-col gap-6'>
 					{product.discount ? (
@@ -35,10 +58,23 @@ function ProductCardActions(product: IProduct) {
 							<Button className='col-span-2	 bg-violet-600 hover:bg-violet-500'>
 								Hozir sotib olish
 							</Button>
-							<Button className='bg-blue-500 hover:bg-blue-600'>
-								<ShoppingCart className='!size-5' />
-							</Button>
-							<Button className='bg-red-500 hover:bg-red-600'>
+							{isBasket ? (
+								<Button
+									variant={'outline'}
+									className='bg-blue-500 hover:bg-blue-600'
+									onClick={handleRemoveToCart}
+								>
+									<ShoppingCart className='!size-5 text-white' />
+								</Button>
+							) : (
+								<Button variant={'outline'} onClick={handleAddToCart}>
+									<ShoppingCart className='!size-5' />
+								</Button>
+							)}
+							<Button
+								variant={isFavorite(product._id) ? 'destructive' : 'outline'}
+								onClick={() => toggleFavorite(product._id)}
+							>
 								<Heart className='!size-5' />
 							</Button>
 						</div>

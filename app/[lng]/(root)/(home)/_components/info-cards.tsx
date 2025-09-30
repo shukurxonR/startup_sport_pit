@@ -13,9 +13,11 @@ import Image from 'next/image'
 
 function InfoCards() {
 	return (
-		<div className='max-w-6xl mx-auto mt-16'>
+		<div className='max-w-6xl mx-auto mt-16 max-md:mt-8'>
 			<div className='flex items-center my-4 gap-2'>
-				<h1 className='text-2xl font-bold '>Fitness Informations</h1>
+				<h1 className='text-2xl font-bold   max-md:px-3'>
+					Fitness Informations
+				</h1>
 				<BicepsFlexed />
 			</div>
 			<Carousel

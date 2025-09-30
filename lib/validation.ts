@@ -31,3 +31,31 @@ export const createProductSchema = z
 			})
 		}
 	})
+
+export const nameEndCategorySchema = z.object({
+	name: z.string().min(5),
+	category: z.string(),
+})
+export const descriptionSchema = z.object({
+	description: z.string().min(20),
+})
+export const priceEndBrendSchema = z.object({
+	brand: z.string(),
+	price: z.string(),
+})
+export const topEndDiscountSchema = z.object({
+	top: z.boolean().optional(),
+	discount: z.boolean().optional(),
+	percent: z.string().optional(),
+})
+export const reviewSchema = z.object({
+	data: z.string().min(3),
+})
+
+export const addressSchema = z.object({
+	fullName: z.string(),
+	tel: z.string(),
+	region: z.string(),
+	city: z.string(),
+	zip: z.string().optional(),
+})

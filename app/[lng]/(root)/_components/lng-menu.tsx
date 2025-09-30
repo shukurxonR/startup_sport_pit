@@ -19,8 +19,8 @@ function LngMenu() {
 		<div>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant={'ghost'}>
-						<Languages className='hover:scale-110 transition-transform duration-300 !size-5' />
+					<Button variant={'ghost'} size={'icon'}>
+						<Languages className='hover:scale-110 transition-transform duration-300 !size-5 ' />
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>

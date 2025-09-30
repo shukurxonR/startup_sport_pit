@@ -1,4 +1,5 @@
 import {
+	BaggageClaim,
 	Blocks,
 	BookCopy,
 	CreditCard,
@@ -72,12 +73,12 @@ export const lngs = [
 
 export const selectCategories = [
 	{ label: 'all', name: 'All' },
-	{ label: 'discounts', name: 'Discounts' },
-	{ label: 'proteins', name: 'Proteins' },
-	{ label: 'gainers', name: 'Gainers' },
-	{ label: 'creatines', name: 'Creatines' },
-	{ label: 'bccas', name: 'Bccas' },
-	{ label: 'vitamins', name: 'Vitamins' },
+	{ label: 'discount', name: 'Discounts' },
+	{ label: 'protaine', name: 'Proteins' },
+	{ label: 'gainer', name: 'Gainers' },
+	{ label: 'creatine', name: 'Creatines' },
+	{ label: 'bcaa', name: 'Bcaas' },
+	{ label: 'vitamin', name: 'Vitamins' },
 	{ label: 'omega-3', name: 'Omega 3' },
 	{ label: 'for-babys', name: 'For Babys' },
 	{ label: 'for-womens', name: 'For Womens' },
@@ -119,6 +120,11 @@ export const instructorNavLinks = [
 		icon: GaugeCircle,
 	},
 	{
+		label: 'Orders',
+		route: '/admin/orders',
+		icon: BaggageClaim,
+	},
+	{
 		label: 'My Products',
 		route: '/admin/my-products',
 		icon: MonitorPlay,
@@ -138,4 +144,15 @@ export const instructorNavLinks = [
 		route: '/admin/settings',
 		icon: Settings2,
 	},
+]
+
+export const chooseCategory = [
+	{ value: 'protaine', label: 'Protaine' },
+	{ value: 'bcaa', label: 'Bcaa' },
+	{ value: 'creatine', label: 'Creatine' },
+	{ value: 'gainer', label: 'Gainer' },
+	{ value: 'omega-3', label: 'Omega-3' },
+	{ value: 'vitamin', label: 'Vitamin' },
+	{ value: 'for-babys', label: 'For-babys' },
+	{ value: 'for-womens', label: 'For-womens' },
 ]

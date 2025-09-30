@@ -1,6 +1,8 @@
 'use client'
+import { deleteProductById } from '@/actions/product-action'
 import { IProduct } from '@/app.types'
 import { selectCategories } from '@/components/constants'
+import Pagination from '@/components/shared/pagination'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -17,27 +19,53 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table'
+import { formUrlQuery } from '@/lib/utils'
 import { Plus } from 'lucide-react'
-import { useParams, useRouter } from 'next/navigation'
+import {
+	useParams,
+	usePathname,
+	useRouter,
+	useSearchParams,
+} from 'next/navigation'
+import { toast } from 'sonner'
 import TableProducts from './table-products'
 interface Props {
-	adminProducts: IProduct[]
+	result: {
+		adminProducts: IProduct[]
+		isNext: boolean
+	}
 }
 
-export default function UserProducts({ adminProducts }: Props) {
+export default function UserProducts({ result }: Props) {
+	const { adminProducts, isNext } = result
 	const { lng } = useParams()
 	const router = useRouter()
+	const pathname = usePathname()
+	const searchParams = useSearchParams()
+	const page = searchParams.get('page')
 
-	console.log(adminProducts)
 	const onDelete = (id: string) => {
-		console.log(id)
+		const result = deleteProductById(id, pathname)
+		toast.promise(result, {
+			loading: 'Loading...',
+			success: 'Successfully deleted ✅',
+			error: 'Delete Error',
+		})
+	}
+	function filterProducts(value: string) {
+		const newUrl = formUrlQuery({
+			params: searchParams.toString(),
+			key: 'filter',
+			value,
+		})
+		router.push(newUrl)
 	}
 	return (
 		<div className='p-6 h-full'>
 			<div className='flex items-center justify-between mb-6'>
 				<h1 className='text-2xl font-bold'>My Products</h1>
 				<div className='flex items-center gap-3'>
-					<Select>
+					<Select onValueChange={filterProducts}>
 						<SelectTrigger className='w-[560px]  font-space-grotesk tracking-widest'>
 							<SelectValue placeholder='Filter Products' />
 						</SelectTrigger>
@@ -82,6 +110,7 @@ export default function UserProducts({ adminProducts }: Props) {
 							))}
 						</TableBody>
 					</Table>
+					<Pagination isNext={isNext} pageNumber={page ? +page : 1} />
 				</CardContent>
 			</Card>
 		</div>

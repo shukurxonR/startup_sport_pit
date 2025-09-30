@@ -7,7 +7,6 @@ function RootLayout({ children }: ChildProps) {
 		<div>
 			<NavBar />
 			<main>{children}</main>
-
 			<Footer />
 		</div>
 	)

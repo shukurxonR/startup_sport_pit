@@ -5,7 +5,7 @@ interface Props {
 
 function Header({ description, title }: Props) {
 	return (
-		<div className='pt-10 flex flex-col gap-1 px-2'>
+		<div className='mt-6 flex flex-col gap-1 px-2'>
 			<h1 className='font-space-grotesk text-2xl font-bold tracking-wider'>
 				{title}
 			</h1>

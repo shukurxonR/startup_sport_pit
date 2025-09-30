@@ -12,14 +12,14 @@ async function Page() {
 	const discountProductsJSON = await getDiscountProducts()
 	const discountProducts = JSON.parse(JSON.stringify(discountProductsJSON))
 	return (
-		<>
+		<div className='w-full'>
 			<HomeCorusel />
 			<AllCategories />
 			<TopProducts topProducts={topProducts} />
 			<DiscountProducts discountProducts={discountProducts} />
 			<InfoCards />
 			<Services />
-		</>
+		</div>
 	)
 }
 

@@ -25,6 +25,7 @@ import { createProductSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { createProduct } from '@/actions/product-action'
+import { chooseCategory } from '@/components/constants'
 import { clearImages } from '@/redux/reducers/imagesState'
 import { RootState } from '@/redux/store'
 import { useAuth } from '@clerk/nextjs'
@@ -43,26 +44,35 @@ function CreateForm() {
 	const dispatch = useDispatch()
 	const { userId } = useAuth()
 	const images = useSelector((state: RootState) => state.images.images)
+
 	const form = useForm<z.infer<typeof createProductSchema>>({
 		resolver: zodResolver(createProductSchema),
 		defaultValues: {},
 	})
+	console.log(userId!)
 
 	function onSubmit(values: z.infer<typeof createProductSchema>) {
 		if (images.length === 0) {
 			return toast.error('Sorry, you did not upload a picture.')
 		}
+		if (!userId) {
+			toast.error('User Yo`q')
+			return
+		}
 
 		const result = createProduct(userId!, {
 			...values,
 			price: +values.price,
-			percent: +values.percent!,
+			percent: values.percent ? +values.percent : 0,
 			images,
 		})
-		console.log(result)
+		result.then(() => {
+			clearImages()
+			form.reset()
+		})
 		toast.promise(result, {
 			loading: 'Loading...',
-			success: 'Successfully loaded',
+			success: 'Successfully loaded ✅',
 			error: 'Unfortunately, the product could not be loaded.',
 		})
 	}
@@ -108,22 +118,14 @@ function CreateForm() {
 																<SelectValue placeholder='Select a category' />
 															</SelectTrigger>
 															<SelectContent>
-																<SelectItem value='protein'>Protein</SelectItem>
-																<SelectItem value='bcaa'>Bcaa</SelectItem>
-																<SelectItem value='creatine'>
-																	Creatine
-																</SelectItem>
-																<SelectItem value='gainer'>Gainer</SelectItem>
-																<SelectItem value='omega-3'>Omega-3</SelectItem>
-																<SelectItem value='vitamins'>
-																	Vitamins
-																</SelectItem>
-																<SelectItem value='for-babys'>
-																	For-babys
-																</SelectItem>
-																<SelectItem value='for-womens'>
-																	For-womens
-																</SelectItem>
+																{chooseCategory.map(slect => (
+																	<SelectItem
+																		value={slect.value}
+																		key={slect.value}
+																	>
+																		{slect.label}
+																	</SelectItem>
+																))}
 															</SelectContent>
 														</Select>
 													</FormControl>

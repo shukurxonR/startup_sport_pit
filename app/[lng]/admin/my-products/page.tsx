@@ -1,18 +1,21 @@
 import { allProductsByAdmin } from '@/actions/product-action'
+import { searchParamsProps } from '@/app.types'
 import { auth } from '@clerk/nextjs/server'
 import UserProducts from './_components/user-products'
 
-async function Page() {
+async function Page({ searchParams }: searchParamsProps) {
 	const { userId } = await auth() // ❌ await kerak emas
-
-	if (!userId) {
-		return <div>Not signed in</div>
-	}
-	const adminProductsJSON = await allProductsByAdmin(userId!)
-	const adminProducts = JSON.parse(JSON.stringify(adminProductsJSON))
+	const page = searchParams.page ? +searchParams.page : 1
+	const filter = searchParams.filter
+	const adminProductsJSON = await allProductsByAdmin({
+		clerkId: userId!,
+		page,
+		filter,
+	})
+	const result = JSON.parse(JSON.stringify(adminProductsJSON))
 	return (
 		<>
-			<UserProducts adminProducts={adminProducts} />
+			<UserProducts result={result} />
 		</>
 	)
 }

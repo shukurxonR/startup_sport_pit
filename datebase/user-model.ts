@@ -6,9 +6,10 @@ const UserSchema = new Schema(
 		clerkId: { type: String },
 		email: { type: String },
 		picture: { type: String },
+		favouriteProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
 	},
 	{ timestamps: true }
 )
 
-const User = models.User || model('User', UserSchema)
+const User = models?.User || model('User', UserSchema)
 export default User

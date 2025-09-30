@@ -3,6 +3,7 @@ import { IProduct } from '@/app.types'
 import ProductCard from '@/components/cards/product-card'
 import { selectCategories } from '@/components/constants'
 import Header from '@/components/shared/header'
+import Pagination from '@/components/shared/pagination'
 import {
 	Select,
 	SelectContent,
@@ -10,11 +11,30 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select'
+import { formUrlQuery } from '@/lib/utils'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 interface Props {
-	allProducts: IProduct[]
+	result: {
+		products: IProduct[]
+		isNext: boolean
+	}
 }
-function AllProducts({ allProducts }: Props) {
+
+function AllProducts({ result }: Props) {
+	const searchParams = useSearchParams()
+	const router = useRouter()
+	const page = searchParams.get('page')
+
+	function onUpdateParams(value: string) {
+		const newUrl = formUrlQuery({
+			params: searchParams.toString(),
+			key: 'filter',
+			value,
+		})
+		router.push(newUrl)
+	}
+
 	return (
 		<div className='max-w-6xl mx-auto '>
 			<div className='flex items-center justify-between '>
@@ -25,7 +45,7 @@ function AllProducts({ allProducts }: Props) {
 					title={'All Products'}
 				/>
 				<div className='self-end'>
-					<Select>
+					<Select onValueChange={onUpdateParams}>
 						<SelectTrigger className='w-[560px]  font-space-grotesk tracking-widest'>
 							<SelectValue placeholder='Filter Products' />
 						</SelectTrigger>
@@ -41,10 +61,11 @@ function AllProducts({ allProducts }: Props) {
 			</div>
 
 			<div className='grid grid-cols-4 gap-4 mt-8'>
-				{allProducts.map(product => (
+				{result.products.map(product => (
 					<ProductCard key={product._id} {...product} />
 				))}
 			</div>
+			<Pagination pageNumber={page ? +page : 1} isNext={result.isNext} />
 		</div>
 	)
 }

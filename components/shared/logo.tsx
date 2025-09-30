@@ -9,7 +9,7 @@ function Logo() {
 				alt='logo'
 				width={160}
 				height={160}
-				className='rounded-full transition-transform duration-500 hover:scale-105 hover:rotate-6 cursor-pointer'
+				className='rounded-full transition-transform duration-500 lg:hover:scale-105 lg:hover:rotate-6 cursor-pointer'
 			/>
 		</Link>
 	)

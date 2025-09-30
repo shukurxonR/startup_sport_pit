@@ -1,3 +1,4 @@
+'use client'
 import { IProduct } from '@/app.types'
 import ProductCard from '@/components/cards/product-card'
 import {
@@ -7,20 +8,26 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from '@/components/ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 interface Props {
 	products: IProduct[]
+	productId: string
 }
-function RecommendProducts({ products }: Props) {
+function RecommendProducts({ products, productId }: Props) {
+	const tafsiyaProducts = products.filter(product => product._id !== productId)
 	return (
 		<div className='w-full'>
 			<Carousel
-				opts={{
-					align: 'start',
-				}}
+				opts={{ align: 'start', loop: true }}
+				plugins={[
+					Autoplay({
+						delay: 2000,
+					}),
+				]}
 				className='w-full'
 			>
 				<CarouselContent>
-					{products.map(product => (
+					{tafsiyaProducts.map(product => (
 						<CarouselItem key={product._id} className='basis-1/4'>
 							<ProductCard {...product} />
 						</CarouselItem>
