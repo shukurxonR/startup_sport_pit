@@ -1,6 +1,7 @@
 import { getAllProducts } from '@/actions/product-action'
 import { searchParamsProps } from '@/app.types'
 import TopBar from '@/components/shared/top-bar'
+import { Suspense } from 'react'
 import AllProducts from './_components/all-products'
 
 export const dynamic = 'force-dynamic'
@@ -16,7 +17,10 @@ async function Page({ searchParams }: searchParamsProps) {
 	return (
 		<>
 			<TopBar label='Products' />
-			<AllProducts result={result} />
+
+			<Suspense fallback={<div>Loading...</div>}>
+				<AllProducts result={result} />
+			</Suspense>
 		</>
 	)
 }

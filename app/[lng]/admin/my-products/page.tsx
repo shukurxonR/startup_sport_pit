@@ -1,6 +1,7 @@
 import { allProductsByAdmin } from '@/actions/product-action'
 import { searchParamsProps } from '@/app.types'
 import { auth } from '@clerk/nextjs/server'
+import { Suspense } from 'react'
 import UserProducts from './_components/user-products'
 
 export const dynamic = 'force-dynamic'
@@ -17,7 +18,9 @@ async function Page({ searchParams }: searchParamsProps) {
 	const result = JSON.parse(JSON.stringify(adminProductsJSON))
 	return (
 		<>
-			<UserProducts result={result} />
+			<Suspense fallback={<div>Loading...</div>}>
+				<UserProducts result={result} />
+			</Suspense>
 		</>
 	)
 }

@@ -9,7 +9,7 @@ import { SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import { Heart, LogIn, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import GlobalSearch from './global-search'
 import LngMenu from './lng-menu'
@@ -41,7 +41,9 @@ function NavBar() {
 				<div className='max-w-6xl mx-auto h-full flex items-center justify-between'>
 					<Logo />
 					<div className='max-md:hidden'>
-						<GlobalSearch />
+						<Suspense fallback={<div>Loading...</div>}>
+							<GlobalSearch />
+						</Suspense>
 					</div>
 
 					<div className='flex items-center gap-2'>
@@ -99,7 +101,9 @@ function NavBar() {
 				</div>
 			</div>
 			<div className='md:hidden'>
-				<GlobalSearch />
+				<Suspense fallback={<div>Loading...</div>}>
+					<GlobalSearch />
+				</Suspense>
 			</div>
 
 			{/* Kategoriya nav */}

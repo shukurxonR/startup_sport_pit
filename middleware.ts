@@ -9,17 +9,6 @@ const intlMiddleware = createMiddleware({
 // Public routelarni matcher
 const isPublicRoute = createRouteMatcher([
 	'/:lng',
-	'/:lng/courses',
-	'/:lng/courses/:slug',
-	'/:lng/blogs',
-	'/:lng/blogs/:slug',
-	'/:lng/instructor/create-course',
-	'/:lng/instructor/my-course',
-	'/:lng/instructor/my-course/:courseid',
-	'/:lng/instructor/dashboard',
-	'/:lng/instructor/reviews',
-	'/:lng/instructor/settings',
-	'/:lng/instructor',
 	'/:lng/api/uploadthing',
 	'/:lng/api/webhook', // ✅ barcha tillar uchun
 ])
@@ -38,6 +27,7 @@ export default clerkMiddleware(async (auth, req) => {
 	}
 
 	// Auth muvaffaqiyatli → intl ishlaydi
+
 	return intlMiddleware(req)
 })
 
