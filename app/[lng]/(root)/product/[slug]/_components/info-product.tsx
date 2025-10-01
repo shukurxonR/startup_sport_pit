@@ -7,10 +7,11 @@ import { useState } from 'react'
 
 function InfoProduct(product: IProduct) {
 	const [mainImage, setMainImage] = useState<string>(product.images?.[0])
+
 	return (
 		<>
-			<div className='border-r-2 '>
-				<h1 className='text-2xl font-space-grotesk font-bold w-[80%]'>
+			<div className='md:border-r-2 '>
+				<h1 className='text-2xl font-space-grotesk font-bold w-[80%] line-clamp-2'>
 					{product.name}
 				</h1>
 
@@ -45,7 +46,7 @@ function InfoProduct(product: IProduct) {
 					</div>
 				</div>
 			</div>
-			<div>
+			<div className='max-md:hidden'>
 				<div className='flex items-center gap-2'>
 					<CircleAlert />
 					<h1 className='font-semibold text-xl'>Tavsif</h1>

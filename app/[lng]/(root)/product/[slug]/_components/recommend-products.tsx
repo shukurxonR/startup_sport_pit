@@ -28,7 +28,10 @@ function RecommendProducts({ products, productId }: Props) {
 			>
 				<CarouselContent>
 					{tafsiyaProducts.map(product => (
-						<CarouselItem key={product._id} className='basis-1/4'>
+						<CarouselItem
+							key={product._id}
+							className='basis-1/4 max-md:basis-2/4'
+						>
 							<ProductCard {...product} />
 						</CarouselItem>
 					))}

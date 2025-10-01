@@ -13,7 +13,7 @@ function TopBar({ label, extra }: Props) {
 	const t = useTranslate()
 	return (
 		<div>
-			<div className='mt-4 h-12 bg-gradient-to-r from-slate-200 to-background'>
+			<div className='mt-4 h-12 bg-gradient-to-r from-slate-200 to-background max-md:px-3'>
 				<div className='container flex mx-auto max-w-6xl w-full items-center '>
 					<div className='flex items-center'>
 						<Link
@@ -27,7 +27,7 @@ function TopBar({ label, extra }: Props) {
 						{extra && (
 							<>
 								<Dot className='size-12 text-muted-foreground' />
-								<p>{t(extra)}</p>
+								<p className='line-clamp-1'>{t(extra)}</p>
 							</>
 						)}
 					</div>

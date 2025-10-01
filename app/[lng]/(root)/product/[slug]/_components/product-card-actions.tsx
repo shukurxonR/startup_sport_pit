@@ -32,7 +32,7 @@ function ProductCardActions(product: IProduct) {
 	)
 	const isBasket = basketProducts.find(card => card._id === product._id)
 	return (
-		<div className='my-14 flex flex-col gap-4 sticky top-24'>
+		<div className='my-14 max-md:my-5 flex flex-col gap-4 w-full top-10'>
 			<Card>
 				<CardContent className='p-4 flex flex-col gap-6'>
 					{product.discount ? (

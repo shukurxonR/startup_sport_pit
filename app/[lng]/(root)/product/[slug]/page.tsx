@@ -1,6 +1,7 @@
 import { getProductByCategory, getProductById } from '@/actions/product-action'
 import { getProductReviews } from '@/actions/review-action'
 import TopBar from '@/components/shared/top-bar'
+import { CircleAlert } from 'lucide-react'
 import InfoProduct from './_components/info-product'
 import ProductCardActions from './_components/product-card-actions'
 import ProductReviews from './_components/product-reviews'
@@ -18,13 +19,25 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
 	return (
 		<>
 			<TopBar label={'Products'} extra={product.name} />
-			<div className='max-w-6xl mx-auto mt-8'>
-				<div className='grid grid-cols-3 gap-4'>
-					<div className='col-span-2'>
+			<div className='max-w-6xl mx-auto mt-8  max-md:px-3'>
+				<div className='grid grid-cols-3 max-md:grid-cols-1 gap-4'>
+					<div className='md:col-span-2'>
 						<InfoProduct {...product} />
 					</div>
 					<ProductCardActions {...product} />
+					<div className='md:hidden'>
+						<div className='flex items-center gap-2'>
+							<CircleAlert />
+							<h1 className='font-semibold text-xl'>Tavsif</h1>
+						</div>
+						<div className='flex flex-col mt-4'>
+							<span className='font-space-grotesk line-clamp-6'>
+								{product.description}
+							</span>
+						</div>
+					</div>
 				</div>
+
 				<ProductReviews productReviews={productReviews} />
 
 				<div className='flex flex-col gap-6 mt-12'>
