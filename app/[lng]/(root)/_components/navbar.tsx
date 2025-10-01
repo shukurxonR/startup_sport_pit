@@ -40,7 +40,9 @@ function NavBar() {
 			<div className='fixed inset-x-0 top-0 h-20 bg-gray-50  z-50 bg-background/70 backdrop-blur-xl border-b max-md:pr-3'>
 				<div className='max-w-6xl mx-auto h-full flex items-center justify-between'>
 					<Logo />
-					<GlobalSearch />
+					<div className='max-md:hidden'>
+						<GlobalSearch />
+					</div>
 
 					<div className='flex items-center gap-2'>
 						<div className='max-md:hidden'>
@@ -77,7 +79,7 @@ function NavBar() {
 									</Button>
 								) : (
 									<Button variant={'ghost'}>
-										<ShoppingCart className='hover:scale-110 transition-transform duration-300 !size-5' />{' '}
+										<ShoppingCart className='hover:scale-110 transition-transform duration-300 !size-5' />
 									</Button>
 								)}
 							</Link>
@@ -96,7 +98,9 @@ function NavBar() {
 					</div>
 				</div>
 			</div>
-			<GlobalSearch />
+			<div className='md:hidden'>
+				<GlobalSearch />
+			</div>
 
 			{/* Kategoriya nav */}
 			<div className='max-md:hidden'>
