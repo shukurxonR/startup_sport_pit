@@ -21,7 +21,7 @@ import {
 	useRouter,
 	useSearchParams,
 } from 'next/navigation'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import LngMenu from './lng-menu'
 function NavBar() {
@@ -31,7 +31,7 @@ function NavBar() {
 	const searchParams = useSearchParams()
 	const router = useRouter()
 	console.log(newPathname)
-
+	const [favoritesLength, setFavoritesLength] = useState(0)
 	function onInpChange(e: ChangeEvent<HTMLInputElement>) {
 		const value = e.target.value
 		const isProductPage = pathname.split('/').includes('products')
@@ -52,8 +52,13 @@ function NavBar() {
 			router.push(newUrl)
 		}
 	}
-	const stored = localStorage.getItem('favorites')
-	const favoritesLength = stored ? JSON.parse(stored).length : 0
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const stored = localStorage.getItem('favorites')
+			setFavoritesLength(stored ? JSON.parse(stored).length : 0)
+		}
+	}, [])
 
 	const basketProducts = useSelector(
 		(state: RootState) => state.basket.basketProducts

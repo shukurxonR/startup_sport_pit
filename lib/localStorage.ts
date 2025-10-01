@@ -10,6 +10,7 @@ export const saveToLocalStorage = (newproducts: basketProductsTip[]) => {
 }
 export const getBasketProductsLocalStorage = () => {
 	try {
+		if (typeof window === 'undefined') return [] // SSR uchun
 		const products = localStorage.getItem(BASKET_KEY)
 		return products ? JSON.parse(products) : []
 	} catch (error) {

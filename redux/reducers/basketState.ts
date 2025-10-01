@@ -10,10 +10,10 @@ export interface basketProductsTip extends IProduct {
 	soni: number
 }
 
-interface Propss {
+interface Props {
 	basketProducts: basketProductsTip[]
 }
-const initialState = <Propss>{
+const initialState = <Props>{
 	basketProducts: getBasketProductsLocalStorage(),
 }
 

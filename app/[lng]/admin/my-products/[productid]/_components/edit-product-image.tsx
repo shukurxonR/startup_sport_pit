@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { updateProductById } from '@/actions/product-action'
 import { IProduct } from '@/app.types'
