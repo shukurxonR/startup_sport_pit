@@ -8,9 +8,10 @@ import { GaugeCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 async function Page({ searchParams }: searchParamsProps) {
 	const payment = await retrievePayment(searchParams.pi!)
-
 	return (
 		<>
 			<TopBar label={'Tashrif buyurish'} extra={'Muvaffaqiyatli!'} />
