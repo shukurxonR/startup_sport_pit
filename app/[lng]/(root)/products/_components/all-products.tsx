@@ -1,4 +1,5 @@
 'use client'
+
 import { IProduct } from '@/app.types'
 import ProductCard from '@/components/cards/product-card'
 import { selectCategories } from '@/components/constants'
@@ -46,7 +47,7 @@ function AllProducts({ result }: Props) {
 				/>
 				<div className='self-end'>
 					<Select onValueChange={onUpdateParams}>
-						<SelectTrigger className='w-[560px]  font-space-grotesk tracking-widest'>
+						<SelectTrigger className='w-[560px] font-space-grotesk tracking-widest'>
 							<SelectValue placeholder='Filter Products' />
 						</SelectTrigger>
 						<SelectContent className='border'>
@@ -65,6 +66,7 @@ function AllProducts({ result }: Props) {
 					<ProductCard key={product._id} {...product} />
 				))}
 			</div>
+
 			<Pagination pageNumber={page ? +page : 1} isNext={result.isNext} />
 		</div>
 	)

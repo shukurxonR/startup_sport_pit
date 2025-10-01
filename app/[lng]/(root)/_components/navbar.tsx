@@ -3,56 +3,26 @@ import { navLinks } from '@/components/constants'
 import Logo from '@/components/shared/logo'
 import UserBox from '@/components/shared/user-box'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { cn, formUrlQuery, removeKeysFromQuery } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { RootState } from '@/redux/store'
 import { SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs'
-import {
-	Heart,
-	LogIn,
-	Search,
-	ShoppingCart,
-	TableOfContents,
-} from 'lucide-react'
+import { Heart, LogIn, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import {
-	useParams,
-	usePathname,
-	useRouter,
-	useSearchParams,
-} from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useParams, usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import GlobalSearch from './global-search'
 import LngMenu from './lng-menu'
+
 function NavBar() {
 	const { lng } = useParams()
 	const pathname = usePathname()
 	const newPathname = pathname.slice(4)
-	const searchParams = useSearchParams()
-	const router = useRouter()
-	console.log(newPathname)
+
 	const [favoritesLength, setFavoritesLength] = useState(0)
-	function onInpChange(e: ChangeEvent<HTMLInputElement>) {
-		const value = e.target.value
-		const isProductPage = pathname.split('/').includes('products')
+	// ?
 
-		if (value && value.length > 1) {
-			const newUrl = formUrlQuery({
-				params: searchParams.toString(),
-				key: 'search',
-				value,
-				toProducts: isProductPage ? false : true,
-			})
-			router.push(newUrl)
-		} else {
-			const newUrl = removeKeysFromQuery({
-				params: searchParams.toString(),
-				keysToRemove: ['search'],
-			})
-			router.push(newUrl)
-		}
-	}
-
+	//
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const stored = localStorage.getItem('favorites')
@@ -70,19 +40,7 @@ function NavBar() {
 			<div className='fixed inset-x-0 top-0 h-20 bg-gray-50  z-50 bg-background/70 backdrop-blur-xl border-b max-md:pr-3'>
 				<div className='max-w-6xl mx-auto h-full flex items-center justify-between'>
 					<Logo />
-
-					<div className='relative w-[420px] max-md:hidden'>
-						<Search className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5' />
-						<Input
-							type='text'
-							onChange={onInpChange}
-							placeholder='Search products...'
-							className='pl-10 pr-4 py-2 w-full rounded-full border border-gray-300 
-                  focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none
-                   focus:shadow-sm focus:shadow-red-800 
-                   transition'
-						/>
-					</div>
+					<GlobalSearch />
 
 					<div className='flex items-center gap-2'>
 						<div className='max-md:hidden'>
@@ -138,27 +96,7 @@ function NavBar() {
 					</div>
 				</div>
 			</div>
-			<div className='flex items-center  md:hidden mt-24 px-3 gap-2'>
-				<div className=' relative w-full'>
-					{/* Search Icon */}
-					<Search className='absolute left-3 inset-y-0 my-auto text-gray-400 size-5' />
-
-					{/* Input */}
-					<Input
-						type='text'
-						onChange={onInpChange}
-						placeholder='Mahsulot izlash...'
-						className='pl-10 pr-4 py-2 w-full border border-gray-300  bg-gray-100
-               rounded-lg
-               focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none
-               focus:shadow-sm focus:shadow-red-800
-               transition'
-					/>
-				</div>
-				<Button size={'icon'} variant={'outline'}>
-					<TableOfContents />
-				</Button>
-			</div>
+			<GlobalSearch />
 
 			{/* Kategoriya nav */}
 			<div className='max-md:hidden'>

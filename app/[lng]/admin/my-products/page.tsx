@@ -3,6 +3,7 @@ import { searchParamsProps } from '@/app.types'
 import { auth } from '@clerk/nextjs/server'
 import UserProducts from './_components/user-products'
 
+export const dynamic = 'force-dynamic'
 async function Page({ searchParams }: searchParamsProps) {
 	const { userId } = await auth() // ❌ await kerak emas
 	const page = searchParams.page ? +searchParams.page : 1
