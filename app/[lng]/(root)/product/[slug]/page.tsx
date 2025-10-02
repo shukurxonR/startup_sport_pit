@@ -1,6 +1,7 @@
 import { getProductByCategory, getProductById } from '@/actions/product-action'
 import { getProductReviews } from '@/actions/review-action'
 import TopBar from '@/components/shared/top-bar'
+import { Card, CardContent } from '@/components/ui/card'
 import { CircleAlert } from 'lucide-react'
 import InfoProduct from './_components/info-product'
 import ProductCardActions from './_components/product-card-actions'
@@ -20,7 +21,7 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
 		<>
 			<TopBar label={'Products'} extra={product.name} />
 			<div className='max-w-6xl mx-auto mt-8  max-md:px-3'>
-				<div className='grid grid-cols-3 max-md:grid-cols-1 gap-4'>
+				<div className='grid grid-cols-3 max-md:grid-cols-1 md:gap-4'>
 					<div className='md:col-span-2'>
 						<InfoProduct {...product} />
 					</div>
@@ -30,11 +31,16 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
 							<CircleAlert />
 							<h1 className='font-semibold text-xl'>Tavsif</h1>
 						</div>
-						<div className='flex flex-col mt-4'>
-							<span className='font-space-grotesk line-clamp-6'>
-								{product.description}
-							</span>
-						</div>
+						<Card>
+							<CardContent className='p-4'>
+								<span className='font-space-grotesk line-clamp-6'>
+									{product.description}
+								</span>
+							</CardContent>
+						</Card>
+						{/* <div className='flex flex-col mt-4'>
+							
+						</div> */}
 					</div>
 				</div>
 

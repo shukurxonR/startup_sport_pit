@@ -11,11 +11,11 @@ function InfoProduct(product: IProduct) {
 	return (
 		<>
 			<div className='md:border-r-2 '>
-				<h1 className='text-2xl font-space-grotesk font-bold w-[80%] line-clamp-2'>
+				<h1 className='text-2xl font-space-grotesk font-bold w-[80%] max-md:w-[90%] line-clamp-2'>
 					{product.name}
 				</h1>
 
-				<div className='flex items-center my-14 w-full '>
+				<div className='flex items-center my-14 max-md:mt-10 max-md:mb-8 w-full max-md:gap-3'>
 					<div className='flex flex-col gap-2 w-[20%]'>
 						{product.images.map(image => (
 							<div
@@ -26,10 +26,10 @@ function InfoProduct(product: IProduct) {
 								<Image
 									src={image}
 									alt={image}
-									width={100}
-									height={100}
+									width={90}
+									height={90}
 									className={cn(
-										' rounded-md border-2 p-2  cursor-pointer',
+										'rounded-md border-2 p-2  cursor-pointer',
 										mainImage === image ? 'border-blue-500' : ''
 									)}
 								/>

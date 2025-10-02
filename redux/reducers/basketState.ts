@@ -13,6 +13,7 @@ export interface basketProductsTip extends IProduct {
 interface Props {
 	basketProducts: basketProductsTip[]
 }
+
 const initialState = <Props>{
 	basketProducts: getBasketProductsLocalStorage(),
 }
