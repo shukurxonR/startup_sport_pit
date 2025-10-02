@@ -10,7 +10,7 @@ async function Page() {
 	const favoriteProducts = JSON.parse(JSON.stringify(favoriteProductsJSON))
 	return (
 		<div>
-			<TopBar label={'Favorite'} />
+			<TopBar label={'Istaklarim'} />
 			<AllFavoriteProducts favoriteProducts={favoriteProducts} />
 		</div>
 	)

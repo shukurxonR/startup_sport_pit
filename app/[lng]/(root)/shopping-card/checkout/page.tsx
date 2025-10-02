@@ -5,7 +5,7 @@ function Page() {
 	return (
 		<div>
 			<TopBar
-				label={'To`lov qilish'}
+				label={'To`lov '}
 				extra={'Savatingizdagi mahsulotlarni sotib olish'}
 			/>
 			<CheckoutElement />

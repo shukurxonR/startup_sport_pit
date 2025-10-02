@@ -12,7 +12,9 @@ function ReviewCard(review: IReview) {
 						<AvatarImage src={review.user.picture} />
 						<AvatarFallback>CN</AvatarFallback>
 					</Avatar>
-					<h1 className=' font-space-grotesk'>{review.user.fullName}</h1>
+					<h1 className=' font-bold  max-md:text-sm line-clamp-1 font-mono'>
+						{review.user.fullName}
+					</h1>
 				</div>
 				<div className='flex flex-col gap-1 mt-1'>
 					<ReactStars
@@ -23,7 +25,7 @@ function ReviewCard(review: IReview) {
 						size={18}
 						activeColor='#facc15'
 					/>
-					<span className='line-clamp-2 h-11 pb-1'>{review.data}</span>
+					<span className='line-clamp-2 h-11 pb-1 text-sm'>{review.data}</span>
 				</div>
 			</CardContent>
 		</Card>

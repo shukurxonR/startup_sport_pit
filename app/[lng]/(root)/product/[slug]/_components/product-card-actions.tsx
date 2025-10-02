@@ -253,21 +253,15 @@ function ProductCardActions(product: IProduct) {
 					<CircleAlert className='!size-5' />
 					<h1 className='font-semibold text-xl'> Mahsulot Tavsifi</h1>
 				</div>
-				<Button
-					className='w-full bg-gray-200 text-black hover:bg-gray-300 text-muted-foreground'
-					size={'lg'}
-					onClick={() => setOpen(true)}
-				>
-					To`liq malumotni ko`rish
-				</Button>
-
-				{/* <Card>
-							<CardContent className='p-4'>
-								<span className='font-space-grotesk line-clamp-6'>
-									{product.description}
-								</span>
-							</CardContent>
-						</Card> */}
+				<div className='flex justify-center items-center'>
+					<Button
+						className='w-[97%] bg-gray-200 text-black hover:bg-gray-300 text-muted-foreground'
+						size={'lg'}
+						onClick={() => setOpen(true)}
+					>
+						To`liq malumotni ko`rish
+					</Button>
+				</div>
 			</div>
 			<Drawer onOpenChange={setOpen} open={open}>
 				<DrawerContent>

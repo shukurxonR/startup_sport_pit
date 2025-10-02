@@ -58,7 +58,7 @@ function ReviewModal() {
 	}
 	return (
 		<Dialog open={isOpen} onOpenChange={() => dispatch(closeReview())}>
-			<DialogContent>
+			<DialogContent className='max-md:w-[95%] rounded-md'>
 				<DialogHeader>
 					<DialogTitle>Mahsulot haqida fikiringiz?</DialogTitle>
 				</DialogHeader>
@@ -84,8 +84,8 @@ function ReviewModal() {
 										<FormControl>
 											<Textarea
 												{...field}
-												className='h-24 resize-none border-none bg-secondary font-medium'
-												placeholder='Ushbu Mahsulot haqida qanday fikrda ekanligingizni bizga ayting. U sizga yoqdimi?'
+												className='h-18 resize-none border-none bg-secondary font-medium'
+												placeholder='Ushbu Mahsulot haqida qanday fikrdasiz qisqacha aytib berin'
 											/>
 										</FormControl>
 										<FormMessage className='text-red-500' />

@@ -41,19 +41,18 @@ function AllCategories() {
 			id='categories'
 			className='max-w-6xl mx-auto pt-8 scroll-mt-20 max-md:px-3'
 		>
-			<h2 className='text-2xl md:text-3xl font-bold text-center'>
-				All Categories
+			<h2 className='text-[22px] md:text-3xl font-bold text-center'>
+				Barcha Kategoriyalar
 			</h2>
 
 			{/* GRID */}
-			<div className='mt-8 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6'>
+			<div className='md:mt-8 mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-[14px] md:gap-6'>
 				{allCategories.map(category => (
 					<div
 						key={category.name}
 						className='group flex flex-col items-center cursor-pointer'
 					>
-						{/* ICON CIRCLE */}
-						<div className='p-3  md:p-5  bg-gray-100 border border-gray-200 rounded-full shadow-sm group-hover:shadow-md group-hover:bg-white transition-all duration-300'>
+						<div className='p-[10px]  md:p-5  bg-gray-100 border border-gray-200 rounded-full shadow-sm group-hover:shadow-md group-hover:bg-white transition-all duration-300'>
 							<Image
 								src={category.img}
 								alt={category.name}

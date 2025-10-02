@@ -26,17 +26,17 @@ export default function CartPage() {
 	return (
 		<>
 			<TopBar label={'Shopping-card'} />
-			<div className='max-w-6xl mx-auto'>
+			<div className='max-w-6xl mx-auto max-md:px-3'>
 				{basketProducts.length > 0 ? (
 					<>
 						<Header
-							title={'Shopping card'}
+							title={'Xarid qilish'}
 							description={
 								'Sizning savatingizdagi mahsulotlar, buyurtma berishingiz mumkun!'
 							}
 						/>
-						<div className='grid grid-cols-3 gap-6 mt-4'>
-							<div className='col-span-2'>
+						<div className='grid grid-cols-3 max-md:grid-cols-1 gap-6 max-md:gap-4 mt-4'>
+							<div className='md:col-span-2 '>
 								<Card>
 									<CardContent className='p-4 flex flex-col'>
 										{basketProducts.map(product => (
@@ -48,7 +48,7 @@ export default function CartPage() {
 												size={'default'}
 												onClick={handleClear}
 											>
-												Delete all
+												Tozalash
 											</Button>
 										</div>
 									</CardContent>

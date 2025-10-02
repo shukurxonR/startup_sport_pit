@@ -20,8 +20,27 @@ function CheckoutElement() {
 		process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 	)
 	return (
-		<div className='max-w-6xl mx-auto mt-10'>
+		<div className='max-w-6xl mx-auto mt-10 max-md:px-3 max-md:mt-6'>
 			<div className='grid grid-cols-3 max-md:grid-cols-1 gap-2 items-start'>
+				<Card className='md:hidden'>
+					<CardContent className='p-4'>
+						<div className='flex flex-col gap-2'>
+							<div className='flex flex-col'>
+								<h1 className='font-bold font-space-grotesk text-xl'>
+									Jami To`lov
+								</h1>
+								<span className='text-sm'>
+									Jami to`lovlar super chigirmalar bilan
+								</span>
+							</div>
+							<Separator className='my-1' />
+							<div className='flex items-center justify-between'>
+								<span className='font-bold'>Jami:</span>
+								<span>{formatPrice(total)} so`m</span>
+							</div>
+						</div>
+					</CardContent>
+				</Card>
 				<Card className='col-span-2 max-md:col-span-1'>
 					<CardContent className='p-4'>
 						<h1 className='font-space-grotesk text-2xl font-bold'>
@@ -70,25 +89,27 @@ function CheckoutElement() {
 							</div>
 						</CardContent>
 					</Card>
-					<Card>
-						<CardContent className='p-4'>
-							<div className='flex flex-col gap-2'>
-								<div className='flex flex-col'>
-									<h1 className='font-bold font-space-grotesk text-xl'>
-										Jami To`lov
-									</h1>
-									<span className='text-sm'>
-										Jami to`lovlar super chigirmalar bilan
-									</span>
+					<div className='max-md:hidden'>
+						<Card>
+							<CardContent className='p-4'>
+								<div className='flex flex-col gap-2'>
+									<div className='flex flex-col'>
+										<h1 className='font-bold font-space-grotesk text-xl'>
+											Jami To`lov
+										</h1>
+										<span className='text-sm'>
+											Jami to`lovlar super chigirmalar bilan
+										</span>
+									</div>
+									<Separator className='my-1' />
+									<div className='flex items-center justify-between'>
+										<span className='font-bold'>Jami:</span>
+										<span>{formatPrice(total)} so`m</span>
+									</div>
 								</div>
-								<Separator className='my-1' />
-								<div className='flex items-center justify-between'>
-									<span className='font-bold'>Jami:</span>
-									<span>{formatPrice(total)} so`m</span>
-								</div>
-							</div>
-						</CardContent>
-					</Card>
+							</CardContent>
+						</Card>
+					</div>
 				</div>
 			</div>
 		</div>
