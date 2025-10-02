@@ -1,13 +1,10 @@
 import { getProductByCategory, getProductById } from '@/actions/product-action'
 import { getProductReviews } from '@/actions/review-action'
 import TopBar from '@/components/shared/top-bar'
-import { Card, CardContent } from '@/components/ui/card'
-import { CircleAlert } from 'lucide-react'
 import InfoProduct from './_components/info-product'
 import ProductCardActions from './_components/product-card-actions'
 import ProductReviews from './_components/product-reviews'
 import RecommendProducts from './_components/recommend-products'
-
 async function Page({ params: { slug } }: { params: { slug: string } }) {
 	const productJSON = await getProductById(slug)
 	const product = JSON.parse(JSON.stringify(productJSON))
@@ -26,22 +23,6 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
 						<InfoProduct {...product} />
 					</div>
 					<ProductCardActions {...product} />
-					<div className='md:hidden'>
-						<div className='flex items-center gap-2'>
-							<CircleAlert />
-							<h1 className='font-semibold text-xl'>Tavsif</h1>
-						</div>
-						<Card>
-							<CardContent className='p-4'>
-								<span className='font-space-grotesk line-clamp-6'>
-									{product.description}
-								</span>
-							</CardContent>
-						</Card>
-						{/* <div className='flex flex-col mt-4'>
-							
-						</div> */}
-					</div>
 				</div>
 
 				<ProductReviews productReviews={productReviews} />
@@ -58,6 +39,8 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
 					</div>
 				</div>
 			</div>
+
+			{/* onOpenChange={setIsOpen} open={isOpen} */}
 		</>
 	)
 }

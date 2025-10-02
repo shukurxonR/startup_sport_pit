@@ -2,6 +2,15 @@
 import { IProduct } from '@/app.types'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+	Drawer,
+	DrawerClose,
+	DrawerContent,
+	DrawerDescription,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerTitle,
+} from '@/components/ui/drawer'
 import { Separator } from '@/components/ui/separator'
 import useFavorite from '@/hooks/use-favorite'
 import { formatPrice } from '@/lib/utils'
@@ -10,6 +19,7 @@ import { RootState } from '@/redux/store'
 import { useAuth } from '@clerk/nextjs'
 import {
 	Check,
+	CircleAlert,
 	Handbag,
 	Heart,
 	ShoppingBasket,
@@ -17,6 +27,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
@@ -25,6 +36,7 @@ function ProductCardActions(product: IProduct) {
 	const { userId } = useAuth()
 	const { toggleFavorite, isFavorite } = useFavorite(userId!)
 	const dispatch = useDispatch()
+	const [open, setOpen] = useState<boolean>(false)
 
 	const handleAddToCart = () => {
 		dispatch(addToCard(product))
@@ -236,6 +248,51 @@ function ProductCardActions(product: IProduct) {
 					</Button>
 				)}
 			</div>
+			<div className='md:hidden flex flex-col gap-6 mt-4'>
+				<div className='flex items-center gap-2 px-1'>
+					<CircleAlert className='!size-5' />
+					<h1 className='font-semibold text-xl'> Mahsulot Tavsifi</h1>
+				</div>
+				<Button
+					className='w-full bg-gray-200 text-black hover:bg-gray-300 text-muted-foreground'
+					size={'lg'}
+					onClick={() => setOpen(true)}
+				>
+					To`liq malumotni ko`rish
+				</Button>
+
+				{/* <Card>
+							<CardContent className='p-4'>
+								<span className='font-space-grotesk line-clamp-6'>
+									{product.description}
+								</span>
+							</CardContent>
+						</Card> */}
+			</div>
+			<Drawer onOpenChange={setOpen} open={open}>
+				<DrawerContent>
+					<DrawerHeader>
+						<DrawerTitle>Mahsulotni to`liq malumoti</DrawerTitle>
+						<DrawerDescription className='line-clamp-1'>
+							{product.name}
+						</DrawerDescription>
+						<div className='mt-2'>
+							{' '}
+							{product.description.slice(0, 600) + '...'}
+						</div>
+					</DrawerHeader>
+					<DrawerFooter>
+						<DrawerClose>
+							<Button
+								variant='outline'
+								className='w-full bg-violet-200 font-space-grotesk text-md'
+							>
+								Oynani yopish
+							</Button>
+						</DrawerClose>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
 		</>
 	)
 }
