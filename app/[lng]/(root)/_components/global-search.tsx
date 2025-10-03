@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet'
-import useFavorite from '@/hooks/use-favorite'
 import { cn, formUrlQuery, removeKeysFromQuery } from '@/lib/utils'
 import { RootState } from '@/redux/store'
 import { useUser } from '@clerk/nextjs'
@@ -26,7 +25,6 @@ function GlobalSearch() {
 	const pathname = usePathname()
 	const [open, setOpen] = useState(false)
 	const newPathname = pathname.slice(4)
-	const { favorites } = useFavorite()
 	const { user } = useUser()
 	const basketProducts = useSelector(
 		(state: RootState) => state.basket.basketProducts
@@ -135,7 +133,7 @@ function GlobalSearch() {
 										<Heart className='w-5 h-5' /> Istaklaringiz
 									</div>
 									<span className='bg-red-500 text-white text-xs rounded-full px-2 py-0.5'>
-										{favorites.length}
+										{0}
 									</span>
 								</div>
 							</Link>

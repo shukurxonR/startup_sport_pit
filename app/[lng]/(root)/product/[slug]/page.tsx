@@ -28,7 +28,7 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
 				<ProductReviews productReviews={productReviews} />
 
 				<div className='flex flex-col gap-6 mt-12'>
-					<h1 className='text-2xl font-extrabold font-space-grotesk'>
+					<h1 className='text-2xl max-md:text-xl font-extrabold font-space-grotesk'>
 						Shuningdek, tavsiya qilamiz
 					</h1>
 					<div>

@@ -9,7 +9,7 @@ import { SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import { Heart, LogIn, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import GlobalSearch from './global-search'
 import LngMenu from './lng-menu'
@@ -19,16 +19,11 @@ function NavBar() {
 	const pathname = usePathname()
 	const newPathname = pathname.slice(4)
 
-	const [favoritesLength, setFavoritesLength] = useState(0)
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const stored = localStorage.getItem('favorites')
-			setFavoritesLength(stored ? JSON.parse(stored).length : 0)
-		}
-	}, [])
-
 	const basketProducts = useSelector(
 		(state: RootState) => state.basket.basketProducts
+	)
+	const favoriteProducts = useSelector(
+		(state: RootState) => state.favorite.favoriteProducts
 	)
 
 	return (
@@ -49,14 +44,14 @@ function NavBar() {
 						</div>
 						<div className='flex gap-2'>
 							<Link href='/favorite'>
-								{favoritesLength > 0 ? (
+								{favoriteProducts.length > 0 ? (
 									<Button variant='outline' size='icon' className='relative '>
 										<Heart className='hover:scale-110 transition-transform duration-300 !size-5 text-red-500' />
 										<span
 											className='absolute -top-1 -right-1 flex items-center justify-center
             w-5 h-5 rounded-full bg-red-500 text-white text-[11px] font-medium shadow-md'
 										>
-											{favoritesLength}
+											{favoriteProducts.length}
 										</span>
 									</Button>
 								) : (

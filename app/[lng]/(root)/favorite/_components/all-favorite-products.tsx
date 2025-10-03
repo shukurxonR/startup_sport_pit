@@ -1,11 +1,13 @@
-import { IProduct } from '@/app.types'
+'use client'
 import ProductCard from '@/components/cards/product-card'
 import Header from '@/components/shared/header'
-interface Props {
-	favoriteProducts: IProduct[]
-}
+import { RootState } from '@/redux/store'
+import { useSelector } from 'react-redux'
 
-function AllFavoriteProducts({ favoriteProducts }: Props) {
+function AllFavoriteProducts() {
+	const favoriteProducts = useSelector(
+		(state: RootState) => state.favorite.favoriteProducts
+	)
 	return (
 		<div className='max-w-6xl mx-auto max-md:px-3'>
 			<Header

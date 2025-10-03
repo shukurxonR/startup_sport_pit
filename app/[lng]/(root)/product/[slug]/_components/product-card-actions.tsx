@@ -12,11 +12,9 @@ import {
 	DrawerTitle,
 } from '@/components/ui/drawer'
 import { Separator } from '@/components/ui/separator'
-import useFavorite from '@/hooks/use-favorite'
 import { formatPrice } from '@/lib/utils'
 import { addToCard, removeCard } from '@/redux/reducers/basketState'
 import { RootState } from '@/redux/store'
-import { useAuth } from '@clerk/nextjs'
 import {
 	Check,
 	CircleAlert,
@@ -33,8 +31,6 @@ import { toast } from 'sonner'
 
 function ProductCardActions(product: IProduct) {
 	const router = useRouter()
-	const { userId } = useAuth()
-	const { toggleFavorite, isFavorite } = useFavorite(userId!)
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState<boolean>(false)
 
@@ -99,10 +95,7 @@ function ProductCardActions(product: IProduct) {
 										<ShoppingCart className='!size-5' />
 									</Button>
 								)}
-								<Button
-									variant={isFavorite(product._id) ? 'destructive' : 'outline'}
-									onClick={() => toggleFavorite(product._id)}
-								>
+								<Button variant={'outline'}>
 									<Heart className='!size-5' />
 								</Button>
 							</div>

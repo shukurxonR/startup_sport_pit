@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import basketState from '../reducers/basketState'
+import favoriteProducts from '../reducers/favoriteState'
 import imagesState from '../reducers/imagesState'
 import reviewstate from '../reducers/reviewState'
 export const store = configureStore({
@@ -7,6 +8,7 @@ export const store = configureStore({
 		images: imagesState,
 		review: reviewstate,
 		basket: basketState,
+		favorite: favoriteProducts,
 	},
 })
 
