@@ -48,7 +48,7 @@ export function useFavorite(userId?: string) {
 	}
 	const isFavorite = (productId: string) => favorites.includes(productId)
 
-	return { toggleFavorite, isFavorite }
+	return { toggleFavorite, isFavorite, favorites }
 }
 
 export default useFavorite

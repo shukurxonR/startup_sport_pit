@@ -195,29 +195,41 @@ function ProductCard(product: IProduct) {
 				</div>
 
 				{/* Like button */}
-				<div className='absolute top-2 right-2'>
+				<div className='absolute top-1 right-1'>
 					{isFavorite(product._id) ? (
 						<motion.div
-							whileHover={{ scale: 1.15 }}
-							whileTap={{ scale: 0.9 }}
-							className='p-1 rounded-full bg-white shadow-md cursor-pointer'
+							whileHover={{ scale: 1.2, zIndex: 10, y: -10 }}
+							whileTap={{ scale: 0.95 }}
+							transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+							className='p-2 rounded-full bg-white shadow-md cursor-pointer'
 							onClick={() => toggleFavorite(product._id)}
 						>
-							<Image
-								src='/icons/love.png'
-								alt='favorite'
-								width={18}
-								height={18}
-							/>
+							<div className='md:hidden'>
+								<Image
+									src={'/icons/love.png'}
+									alt={'favorite'}
+									width={17}
+									height={17}
+								/>
+							</div>
+							<div className='max-md:hidden'>
+								<Image
+									src={'/icons/love.png'}
+									alt={'favorite'}
+									width={25}
+									height={25}
+								/>
+							</div>
 						</motion.div>
 					) : (
 						<motion.div
-							whileHover={{ scale: 1.15 }}
-							whileTap={{ scale: 0.9 }}
-							className='p-1 rounded-full bg-white shadow-md cursor-pointer'
+							whileHover={{ scale: 1.2, zIndex: 10, y: -10 }}
+							whileTap={{ scale: 0.95 }}
+							transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+							className='p-2 rounded-full bg-white shadow-md cursor-pointer'
 							onClick={() => toggleFavorite(product._id)}
 						>
-							<Heart className='text-red-500 w-4 h-4' />
+							<Heart className='text-red-500 max-md:!size-4' />
 						</motion.div>
 					)}
 				</div>
@@ -231,18 +243,20 @@ function ProductCard(product: IProduct) {
 					</h3>
 
 					{/* Narx va Status */}
-					<div className='flex items-center justify-between mb-1 '>
+					<div className='flex items-center justify-between mb-1 md:mb-3 '>
 						{product.discount && (
-							<span className='text-[10px] line-through text-red-500'>
+							<span className='text-[10px] md:text-sm line-through text-red-500'>
 								{formatPrice(product.price)} so‘m
 							</span>
 						)}
-						<span className='text-green-600 text-[10px]'>Mavjud</span>
+						<span className='text-green-600 text-[10px] md:text-sm'>
+							Mavjud
+						</span>
 					</div>
 				</Link>
 
 				{/* Narx + Button */}
-				<div className='flex max-md:grid max-md:grid-cols-1 max-md:gap-2 items-center justify-between  mt-2'>
+				<div className='flex max-md:grid max-md:grid-cols-1 max-md:gap-2  items-center justify-between  mt-2'>
 					<Link href={`/product/${product._id}`}>
 						<span
 							className={cn(
@@ -269,7 +283,10 @@ function ProductCard(product: IProduct) {
 							whileTap={{ scale: 0.95 }}
 							transition={{ type: 'spring', stiffness: 500, damping: 15 }}
 						>
-							<Button variant={'outline'} className=' h-6 text-[12px] w-full'>
+							<Button
+								variant={'outline'}
+								className=' h-6 text-[12px] w-full md:h-8 '
+							>
 								Bekor qilish
 							</Button>
 						</motion.div>
@@ -280,7 +297,7 @@ function ProductCard(product: IProduct) {
 							whileTap={{ scale: 0.95 }}
 							transition={{ type: 'spring', stiffness: 500, damping: 15 }}
 						>
-							<Button className='bg-blue-600 w-full hover:bg-blue-800 h-6 text-[12px]'>
+							<Button className='bg-blue-600 w-full hover:bg-blue-800 h-6 text-[12px] md:h-8 '>
 								Savatga
 							</Button>
 						</motion.div>

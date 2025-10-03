@@ -20,9 +20,6 @@ function NavBar() {
 	const newPathname = pathname.slice(4)
 
 	const [favoritesLength, setFavoritesLength] = useState(0)
-	// ?
-
-	//
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const stored = localStorage.getItem('favorites')

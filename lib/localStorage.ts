@@ -18,3 +18,13 @@ export const getBasketProductsLocalStorage = () => {
 		return []
 	}
 }
+export const getFavoriteProductsLocalStorage = () => {
+	try {
+		if (typeof window === 'undefined') return [] // SSR uchun
+		const products = localStorage.getItem(BASKET_KEY)
+		return products ? JSON.parse(products) : []
+	} catch (error) {
+		console.error('Basketni localStorage dan olishda xato:', error)
+		return []
+	}
+}

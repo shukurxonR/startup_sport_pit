@@ -1,28 +1,29 @@
 import {
 	BaggageClaim,
-	Blocks,
 	BookCopy,
+	Contact,
 	CreditCard,
 	FileCode,
-	GalleryVerticalEnd,
 	GaugeCircle,
 	Headphones,
 	Home,
+	LayoutDashboard,
 	MessageSquareMore,
 	MonitorPlay,
-	MonitorSmartphone,
+	Package,
 	Settings2,
 	ShieldCheck,
 	TableOfContents,
 	Truck,
 } from 'lucide-react'
+
 export const navLinks = [
-	{ route: '', name: 'Home', icon: Home },
-	{ route: 'categories', name: 'Categories', icon: TableOfContents },
-	{ route: 'products', name: 'All products', icon: GalleryVerticalEnd },
-	{ route: 'blogs', name: 'Blogs', icon: Blocks },
-	{ route: 'about', name: 'About us', icon: BookCopy },
-	{ route: 'contact', name: 'Contact', icon: MonitorSmartphone },
+	{ route: '', name: 'Bosh sahifa', icon: Home },
+	{ route: 'categories', name: 'Kategoriyalar', icon: TableOfContents },
+	{ route: 'products', name: 'Mahsulotlar', icon: Package },
+	{ route: 'blogs', name: 'Bloglar', icon: LayoutDashboard },
+	{ route: 'about', name: 'Biz haqimizda', icon: BookCopy },
+	{ route: 'contact', name: 'Bog`lanish', icon: Contact },
 ]
 
 export const coruselBanner = [
@@ -156,3 +157,24 @@ export const chooseCategory = [
 	{ value: 'for-babys', label: 'For-babys' },
 	{ value: 'for-womens', label: 'For-womens' },
 ]
+
+// <nav className='flex flex-col gap-3 text-gray-700 flex-1'>
+// 						<div className='flex items-center gap-2 font-medium text-blue-600'>
+// 							<LayoutDashboard className='w-5 h-5' /> Bosh sahifa
+// 						</div>
+// 						<div className='flex items-center gap-2'>
+// 							<Package className='w-5 h-5' /> Mahsulotlar
+// 						</div>
+// 						<div className='flex items-center gap-2'>
+// 							<Mail className='w-5 h-5' /> Mail
+// 						</div>
+// 						<div className='flex items-center gap-2'>
+// 							<Flag className='w-5 h-5' /> Campaigns
+// 						</div>
+// 						<div className='flex items-center gap-2'>
+// 							<Calendar className='w-5 h-5' /> Calendar
+// 						</div>
+// 						<div className='flex items-center gap-2'>
+// 							<Contact className='w-5 h-5' /> Contacts
+// 						</div>
+// 					</nav>
