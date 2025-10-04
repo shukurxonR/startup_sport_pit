@@ -1,4 +1,4 @@
-import { getAllProducts } from '@/actions/product-action'
+import { getAllProducts, getTopProducts } from '@/actions/product-action'
 import { searchParamsProps } from '@/app.types'
 import TopBar from '@/components/shared/top-bar'
 import { Suspense } from 'react'
@@ -13,13 +13,14 @@ async function Page({ searchParams }: searchParamsProps) {
 
 	const allProductsJSON = await getAllProducts({ page, filter, searchQuery })
 	const result = JSON.parse(JSON.stringify(allProductsJSON))
-
+	const topProductsJSON = await getTopProducts()
+	const topProducts = JSON.parse(JSON.stringify(topProductsJSON))
 	return (
 		<>
 			<TopBar label='Products' />
 
 			<Suspense fallback={<div>Loading...</div>}>
-				<AllProducts result={result} />
+				<AllProducts result={result} topProducts={topProducts} />
 			</Suspense>
 		</>
 	)

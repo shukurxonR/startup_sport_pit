@@ -6,12 +6,11 @@ import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
 import { dir } from 'i18next'
 import type { Metadata } from 'next'
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
+import NextTopLoader from 'nextjs-toploader'
 import { Toaster } from 'sonner'
 import { extractRouterConfig } from 'uploadthing/server'
 import { ourFileRouter } from './api/uploadthing/core'
 import './globals.css'
-// import { store } from '@store/index'
-
 const spaceGrotesk = SpaceGrotesk({
 	weight: ['400', '500', '600', '700'],
 	subsets: ['latin'],
@@ -37,6 +36,8 @@ export default function RootLayout({ children, params: { lng } }: RootProps) {
 					className={` ${spaceGrotesk.variable}  overflow-x-hidden custom-scrollbar`}
 				>
 					<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+
+					<NextTopLoader showSpinner={false} />
 					<ReduxStoreProvider>{children}</ReduxStoreProvider>
 					<Toaster position='top-center' />
 				</body>

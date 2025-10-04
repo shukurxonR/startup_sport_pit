@@ -14,6 +14,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { formatPrice } from '@/lib/utils'
 import { addToCard, removeCard } from '@/redux/reducers/basketState'
+import { toggleFavorite } from '@/redux/reducers/favoriteState'
 import { RootState } from '@/redux/store'
 import {
 	Check,
@@ -47,6 +48,12 @@ function ProductCardActions(product: IProduct) {
 		(state: RootState) => state.basket.basketProducts
 	)
 	const isBasket = basketProducts.find(card => card._id === product._id)
+	const favoriteProducts = useSelector(
+		(state: RootState) => state.favorite.favoriteProducts
+	)
+
+	const isFavorite = favoriteProducts.find(card => card._id === product._id)
+
 	return (
 		<>
 			<div className='my-14 max-md:my-5 flex flex-col gap-4 w-full top-10'>
@@ -95,9 +102,21 @@ function ProductCardActions(product: IProduct) {
 										<ShoppingCart className='!size-5' />
 									</Button>
 								)}
-								<Button variant={'outline'}>
-									<Heart className='!size-5' />
-								</Button>
+								{isFavorite ? (
+									<Button
+										variant={'destructive'}
+										onClick={() => dispatch(toggleFavorite(product))}
+									>
+										<Heart className='!size-5' />
+									</Button>
+								) : (
+									<Button
+										variant={'outline'}
+										onClick={() => dispatch(toggleFavorite(product))}
+									>
+										<Heart className='!size-5' />
+									</Button>
+								)}
 							</div>
 							<div className='flex flex-col gap-2'>
 								<div className='flex items-center gap-2'>

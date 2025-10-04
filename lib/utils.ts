@@ -17,6 +17,7 @@ interface formUrlQueryParams {
 	key: string
 	value: string | null
 	toProducts?: boolean
+	remove?: string[]
 }
 
 export function formUrlQuery({
@@ -24,8 +25,15 @@ export function formUrlQuery({
 	key,
 	value,
 	toProducts,
+	remove,
 }: formUrlQueryParams) {
 	const currentUrl = qs.parse(params)
+
+	if (remove && remove.length > 0) {
+		remove.forEach(key => {
+			delete currentUrl[key]
+		})
+	}
 
 	currentUrl[key] = value
 
@@ -44,6 +52,7 @@ interface RemoveUrlQueryParams {
 	params: string
 	keysToRemove: string[]
 }
+
 export const removeKeysFromQuery = ({
 	params,
 	keysToRemove,
