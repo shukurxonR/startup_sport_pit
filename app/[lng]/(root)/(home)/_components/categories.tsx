@@ -34,6 +34,7 @@
 // export default AllCategories
 import { allCategories } from '@/components/constants'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function AllCategories() {
 	return (
@@ -45,28 +46,26 @@ function AllCategories() {
 				Barcha Kategoriyalar
 			</h2>
 
-			{/* GRID */}
 			<div className='md:mt-8 mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-[14px] md:gap-6'>
 				{allCategories.map(category => (
-					<div
-						key={category.name}
-						className='group flex flex-col items-center cursor-pointer'
-					>
-						<div className='p-[10px]  md:p-5  bg-gray-100 border border-gray-200 rounded-full shadow-sm group-hover:shadow-md group-hover:bg-white transition-all duration-300'>
-							<Image
-								src={category.img}
-								alt={category.name}
-								width={56}
-								height={56}
-								className='sm:w-14 sm:h-14 w-12 h-12 object-contain'
-							/>
-						</div>
+					<Link href={`/products?filter=${category.route}`} key={category.name}>
+						<div className='group flex flex-col items-center cursor-pointer'>
+							<div className='p-[10px]  md:p-5  bg-gray-100 border border-gray-200 rounded-full shadow-sm group-hover:shadow-md group-hover:bg-white transition-all duration-300'>
+								<Image
+									src={category.img}
+									alt={category.name}
+									width={56}
+									height={56}
+									className='sm:w-14 sm:h-14 w-12 h-12 object-contain'
+								/>
+							</div>
 
-						{/* NAME */}
-						<span className='mt-2 text-sm md:text-base font-medium text-gray-700 group-hover:text-black transition-colors'>
-							{category.name}
-						</span>
-					</div>
+							{/* NAME */}
+							<span className='mt-2 text-sm md:text-base font-medium text-gray-700 group-hover:text-black transition-colors'>
+								{category.name}
+							</span>
+						</div>
+					</Link>
 				))}
 			</div>
 		</section>

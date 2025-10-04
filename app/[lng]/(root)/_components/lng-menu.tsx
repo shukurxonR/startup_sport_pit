@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 function LngMenu() {
 	const { lng } = useParams()
+
 	return (
 		<div>
 			<DropdownMenu>

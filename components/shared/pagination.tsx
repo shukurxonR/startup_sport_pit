@@ -30,11 +30,11 @@ function Pagination({ isNext, pageNumber }: Props) {
 	return (
 		<div className='w-full flex items-center justify-center gap-4 my-4'>
 			<Button onClick={() => onPagination('prev')} disabled={pageNumber === 1}>
-				Prev
+				Ortga
 			</Button>
 			<h1 className='text-xl'>{pageNumber}</h1>
 			<Button onClick={() => onPagination('next')} disabled={!isNext}>
-				Next
+				Yana
 			</Button>
 		</div>
 	)

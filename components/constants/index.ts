@@ -33,16 +33,16 @@ export const coruselBanner = [
 ]
 
 export const allCategories = [
-	{ img: '/category/protaine.png', name: 'Protaine' },
-	{ img: '/category/bcca.png', name: 'Bcca' },
-	{ img: '/category/gainer.png', name: 'Gainer' },
+	{ img: '/category/protaine.png', name: 'Protaine', route: 'protaine' },
+	{ img: '/category/gainer.png', name: 'Gainer', route: 'gainer' },
+	{ img: '/category/bcca.png', name: 'Bcca', route: 'bcaa' },
 
-	{ img: '/category/creatine.png', name: 'Creatine' },
-	{ img: '/category/vitamin.png', name: 'Vitamins' },
-	{ img: '/category/omega.png', name: 'Omega 3' },
+	{ img: '/category/creatine.png', name: 'Creatine', route: 'creatine' },
+	{ img: '/category/vitamin.png', name: 'Vitamins', route: 'vitamin' },
+	{ img: '/category/omega.png', name: 'Omega 3', route: 'omega-3' },
 	//
-	{ img: '/category/bay.png', name: 'For Baby' },
-	{ img: '/category/women.png', name: 'For women' },
+	{ img: '/category/bay.png', name: 'Bolalarga', route: 'for-babys' },
+	{ img: '/category/women.png', name: 'Ayollarga', route: 'for-womens' },
 ]
 
 export const services = [
