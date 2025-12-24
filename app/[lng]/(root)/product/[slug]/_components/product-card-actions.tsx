@@ -25,6 +25,7 @@ import {
 	ShoppingCart,
 } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -82,8 +83,9 @@ function ProductCardActions(product: IProduct) {
 								<Button
 									className='max-md:col-span-3 col-span-2 font-space-grotesk text-md bg-gray-200 '
 									variant={'outline'}
+									onClick={() => dispatch(addToCard(product))}
 								>
-									Hozir sotib olish
+									<Link href={'/shopping-card/card'}>Hozir sotib olish</Link>
 								</Button>
 								{isBasket ? (
 									<Button

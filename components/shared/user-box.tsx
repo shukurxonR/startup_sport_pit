@@ -61,18 +61,6 @@ function UserBox() {
 							</Link>
 						)}
 
-						<Link href='/user-profile' className='cursor-pointer'>
-							<DropdownMenuItem className='w-full cursor-pointer font-space-grotesk'>
-								Info Account
-							</DropdownMenuItem>
-						</Link>
-
-						<Link href='/instructor' className='cursor-pointer'>
-							<DropdownMenuItem className='w-full cursor-pointer font-space-grotesk'>
-								Instructor
-							</DropdownMenuItem>
-						</Link>
-
 						<DropdownMenuItem
 							asChild
 							className='w-full bg-secondary cursor-pointer'
